@@ -25,11 +25,11 @@ class Brain:
                 self.neuronSeries = [None] * (1 + args[0] + 1)
                 hiddenLayers = args[0]
                 """Setup Input Layer + Hidden Layer"""
-                self.neuronSeries[0] = NeuronSeries(self, 0, len(self.inputData))
+                self.neuronSeries[0] = NeuronSeries(self, "INPUT", 0, len(self.inputData))
                 for n in range(0, hiddenLayers):
-                    self.neuronSeries[n + 1] = NeuronSeries(self, n + 1, len(self.inputData))
+                    self.neuronSeries[n + 1] = NeuronSeries(self, "HIDDEN", n + 1, len(self.inputData))
 
-                self.neuronSeries[len(self.neuronSeries) - 1] = NeuronSeries(self, len(self.neuronSeries) - 1,
+                self.neuronSeries[len(self.neuronSeries) - 1] = NeuronSeries(self, "OUTPUT", len(self.neuronSeries) - 1,
                                                                              len(expectedOutputs))
 
         print(self.printSelf())
