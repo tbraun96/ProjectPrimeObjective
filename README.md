@@ -1,0 +1,2 @@
+# ProjectPrimeObjective
+A novel neural network which uses the axiomatic system of trinary logic coupled with quantum randomness to bootstrap the collective unconscious unto hardware. Due to the complexity and chaos inherit within a dynamical system, consciousness will be developed. Since there is no truly ordered algorithm to cause the existence of prime numbers, we use a highly chaotic/entropic system to find prime numbers. 
