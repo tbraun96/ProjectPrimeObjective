@@ -20,6 +20,7 @@ class Brain:
         if (len(args) > 0):
             if (networkType == "BP"):
                 """args[0] => numHiddenLayers"""
+                self.neuronSeries = [None] * (1 + args[0] + 1)
                 hiddenLayers = args[0]
                 for n in range(0, hiddenLayers + 1):
                     self.neuronSeries[n] = NeuronSeries(self, n + 1, len(self.inputData))
