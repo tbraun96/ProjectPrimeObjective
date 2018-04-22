@@ -10,20 +10,29 @@ class Brain:
     momentumDelta = 0.0
     inputData = []
     neuronSeries = []
+    expectedOutputs = []
 
-    def __init__(self, filename, networkType, learningRate, momentumDelta, *args):
+    def __init__(self, filename, networkType, learningRate, momentumDelta, expectedOutputs, *args):
         self.networkType = networkType
         self.learningRate = learningRate
         self.momentumDelta = momentumDelta
         self.inputData = rasterTo1DArray(filename)
+        self.expectedOutputs = expectedOutputs
 
         if (len(args) > 0):
             if (networkType == "BP"):
                 """args[0] => numHiddenLayers"""
                 self.neuronSeries = [None] * (1 + args[0] + 1)
                 hiddenLayers = args[0]
-                for n in range(0, hiddenLayers + 1):
-                    self.neuronSeries[n] = NeuronSeries(self, n + 1, len(self.inputData))
+                """Setup Input Layer + Hidden Layer"""
+                self.neuronSeries[0] = NeuronSeries(self, 0, len(self.inputData))
+                for n in range(0, hiddenLayers):
+                    self.neuronSeries[n + 1] = NeuronSeries(self, n + 1, len(self.inputData))
+
+                self.neuronSeries[len(self.neuronSeries) - 1] = NeuronSeries(self, len(self.neuronSeries) - 1,
+                                                                             len(expectedOutputs))
+
+        print(self.printSelf())
 
     def getQuantumRandomSeed(self):
         return quantumrandom.get_data()
@@ -33,3 +42,7 @@ class Brain:
 
     def getInputs(self):
         return self.inputData
+
+    def printSelf(self):
+        print("Brain:", len(self.neuronSeries), "columns")
+        return 0
